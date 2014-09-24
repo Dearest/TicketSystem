@@ -24,7 +24,8 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
         public static final int logo=0x7f020001;
         public static final int shape_bg=0x7f020002;
-        public static final int welcome=0x7f020003;
+        public static final int shape_line=0x7f020003;
+        public static final int welcome=0x7f020004;
     }
     public static final class id {
         public static final int action_settings=0x7f080008;
