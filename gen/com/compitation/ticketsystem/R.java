@@ -28,10 +28,8 @@ public final class R {
         public static final int welcome=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f080008;
-        public static final int checkbox1=0x7f080005;
-        public static final int checkbox2=0x7f080006;
-        public static final int forgetorregister=0x7f080007;
+        public static final int action_settings=0x7f080006;
+        public static final int forgetorregister=0x7f080005;
         public static final int login=0x7f080004;
         public static final int password=0x7f080003;
         public static final int rl=0x7f080001;
