@@ -5,14 +5,15 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_login">Login</string>
-    
-    <string name="password_digits">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLIMNOPQRSTUVWXYZ
-</string>
+    <string name="password_digits">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLIMNOPQRSTUVWXYZ</string>
     <string name="account">请填写帐号</string>
     <string name="password">请输入密码</string>
     <string name="login">登   录</string>
     <string name="forgetorregister">忘记密码或注册用户</string>
     <string name="rem_pass">记住密码</string>
     <string name="auto_login">自动登录</string>
+    <string name="title_activity_forget_and_register">ForgetAndRegister</string>
+    <string name="title_activity_forget_password">ForgetPassword</string>
+    <string name="title_activity_regiser">Register</string>
 
 </resources>
