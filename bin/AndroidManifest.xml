@@ -31,19 +31,19 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.compitation.ticketsystem.Activity$ForgetAndRegister"
+            android:name="com.compitation.ticketsystem.Activity.ForgetAndRegister"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_forget_and_register"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@style/MyDialogStyleBottom" >
         </activity>
         <activity
-            android:name="com.compitation.ticketsystem.Activity$ForgetPassword"
+            android:name="com.compitation.ticketsystem.Activity.ForgetPassword"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_forget_password"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.compitation.ticketsystem.Activity$Register"
+            android:name="com.compitation.ticketsystem.Activity.Register"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_regiser"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
