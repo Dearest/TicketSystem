@@ -48,7 +48,7 @@ public class LoginActivity extends Activity {
 		forgetorregister.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		forgetorregister.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				startActivity(new Intent(LoginActivity.this, ForgetAndRegister.class));
+			//	startActivity(new Intent(LoginActivity.this, ForgetAndRegister.class));
 			}
 		});
 		//输入框以及登录按钮
@@ -83,9 +83,9 @@ public class LoginActivity extends Activity {
 	 * 载入动画
 	 */
 	private void anim() {
-		// TODO Auto-generated method stub
-		my_Translate = AnimationUtils.loadAnimation(this, R.anim.my_translate);
-		AnimationUtils.loadAnimation(this, R.anim.my_rotate);
+//		// TODO Auto-generated method stub
+//		my_Translate = AnimationUtils.loadAnimation(this, R.anim.my_translate);
+//		AnimationUtils.loadAnimation(this, R.anim.my_rotate);
 	}
 	
 	/**
