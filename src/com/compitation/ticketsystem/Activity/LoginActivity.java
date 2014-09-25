@@ -142,9 +142,9 @@ public class LoginActivity extends Activity {
 			switch (msg.what) {
 			case 1:
 				
-				// Intent intent = new
-				// Intent(LoginActivity.this,MainPage.class);
-				// startActivity(intent);
+				 Intent intent = new
+				 Intent(LoginActivity.this,ViewPagerActivity.class);
+				 startActivity(intent);
 				Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG)
 						.show();
 				Log.i("Flag", "LoginActivity 登录成功");
