@@ -94,6 +94,8 @@ public class LoginActivity extends Activity {
 					if (isNetworkConnected()) {
 						//在这里执行后续操作
 						//loginDispatch.login(handler,userName, passWord);
+				
+
 					} else {
 						Toast.makeText(LoginActivity.this, "无网络连接，请检查网络", Toast.LENGTH_LONG)
 								.show();
@@ -108,7 +110,6 @@ public class LoginActivity extends Activity {
 	 * 载入动画
 	 */
 	private void anim() {
-		// TODO Auto-generated method stub
 		my_Translate = AnimationUtils.loadAnimation(this, R.anim.my_translate);
 		AnimationUtils.loadAnimation(this, R.anim.my_rotate);
 	}
@@ -142,7 +143,9 @@ public class LoginActivity extends Activity {
 			switch (msg.what) {
 			case 1:
 				//给主界面的线程发消息 把加载主界面的线程发送过去
-				//登录失败 用户名或密码错误
+				//Intent intent = new Intent(LoginActivity.this,MainPage.class);
+				//startActivity(intent);
+				
 				Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG)
 				.show();
 				Log.i("Flag","登录成功");
