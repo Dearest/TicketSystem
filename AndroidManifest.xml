@@ -3,6 +3,8 @@
     package="com.compitation.ticketsystem"
     android:versionCode="1"
     android:versionName="1.0" >
+    
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -46,6 +48,12 @@
             android:name="com.compitation.ticketsystem.Activity.Register"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_regiser"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.compitation.ticketsystem.Activity.MainPage"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_main_page"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
     </application>

@@ -15,5 +15,15 @@
     <string name="title_activity_forget_and_register">ForgetAndRegister</string>
     <string name="title_activity_forget_password">ForgetPassword</string>
     <string name="title_activity_regiser">Register</string>
+    <string name="register">注  册</string>
+    <string name="input_password">输入密码</string>
+    <string name="input_password_ag">再次输入密码</string>
+    <string name="sex">性别：</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="security_question">密 保:</string>
+    <string name="answer">密保问题答案</string>
+    <string name="car_account">请输入车牌号</string>
+    <string name="title_activity_main_page">MainPage</string>
 
 </resources>

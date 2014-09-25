@@ -48,7 +48,7 @@ public class LoginActivity extends Activity {
 		forgetorregister.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		forgetorregister.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-			//	startActivity(new Intent(LoginActivity.this, ForgetAndRegister.class));
+				startActivity(new Intent(LoginActivity.this, ForgetAndRegister.class));
 			}
 		});
 		//输入框以及登录按钮
@@ -68,6 +68,8 @@ public class LoginActivity extends Activity {
 							.show();
 				} else {
 					if (isNetworkConnected()) {
+						Intent intent = new Intent(LoginActivity.this,MainPage.class);
+						startActivity(intent);
 						 
 					} else {
 						Toast.makeText(LoginActivity.this, "无网络连接，请检查网络", Toast.LENGTH_LONG)
@@ -84,8 +86,8 @@ public class LoginActivity extends Activity {
 	 */
 	private void anim() {
 //		// TODO Auto-generated method stub
-//		my_Translate = AnimationUtils.loadAnimation(this, R.anim.my_translate);
-//		AnimationUtils.loadAnimation(this, R.anim.my_rotate);
+		my_Translate = AnimationUtils.loadAnimation(this, R.anim.my_translate);
+		AnimationUtils.loadAnimation(this, R.anim.my_rotate);
 	}
 	
 	/**
