@@ -26,6 +26,7 @@ import com.compitation.ticketsystem.Idispatch.ILoginAndRegisterDispatch;
 import com.compitation.ticketsystem.dispatchImpl.LoginAndRegisterDispatchImpl;
 import com.compitation.ticketsystem.utils.MD5Helper;
 import com.compitation.ticketsystem.utils.SystemContent;
+import com.comtipation.ticketsystem.model.User;
 
 public class LoginActivity extends Activity {
 	private EditText username;
@@ -93,8 +94,7 @@ public class LoginActivity extends Activity {
 				} else {
 					if (isNetworkConnected()) {
 						// 在这里执行后续操作
-						loginDispatch.login(handler,userName, passWord);
-
+						loginDispatch.login(mySharedPreferences,handler,userName, passWord);
 					} else {
 						Toast.makeText(LoginActivity.this, "无网络连接，请检查网络",
 								Toast.LENGTH_LONG).show();
@@ -142,14 +142,13 @@ public class LoginActivity extends Activity {
 			// 在这里处理消息
 			switch (msg.what) {
 			case 1:
-				// 给主界面的线程发消息 把加载主界面的线程发送过去
+				
 				// Intent intent = new
 				// Intent(LoginActivity.this,MainPage.class);
 				// startActivity(intent);
-
 				Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG)
 						.show();
-				Log.i("Flag", "登录成功");
+				Log.i("Flag", "LoginActivity 登录成功");
 				break;
 			case 2:
 				// 登录失败 用户名或密码错误

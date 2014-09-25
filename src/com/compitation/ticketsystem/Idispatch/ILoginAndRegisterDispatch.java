@@ -1,5 +1,6 @@
 package com.compitation.ticketsystem.Idispatch;
 
+import android.content.SharedPreferences;
 import android.os.Handler;
 
 import com.comtipation.ticketsystem.model.User;
@@ -11,7 +12,6 @@ import com.comtipation.ticketsystem.model.User;
  * 
  */
 public interface ILoginAndRegisterDispatch {
-	public void login(Handler handler, String userName, String passWord);
-
-	public boolean register(User user);
+	public void login( SharedPreferences sharedPreferences, Handler handler, String userName, String passWord);
+	public boolean register(SharedPreferences sharedPreferences, Handler handler,User user);
 }

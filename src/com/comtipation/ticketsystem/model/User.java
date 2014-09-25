@@ -1,5 +1,7 @@
 package com.comtipation.ticketsystem.model;
 
+import android.R.integer;
+
 public class User {
 	private String userId;
 	private String userName;
@@ -26,6 +28,15 @@ public class User {
 	 * 密保问题
 	 */
 	private String securityQuestionAnwser;
+	/**
+	 * 罚单数量
+	 */
+	private int ticketNum;
+	/**
+	 * 人品值
+	 */
+	private int quality;
+	private int upTicketNum;
 	
 	public String getUserName() {
 		return userName;
@@ -74,5 +85,23 @@ public class User {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public int getTicketNum() {
+		return ticketNum;
+	}
+	public void setTicketNum(int ticketNum) {
+		this.ticketNum = ticketNum;
+	}
+	public int getQuality() {
+		return quality;
+	}
+	public void setQuality(int quality) {
+		this.quality = quality;
+	}
+	public int getUpTicketNum() {
+		return upTicketNum;
+	}
+	public void setUpTicketNum(int upTicketNum) {
+		this.upTicketNum = upTicketNum;
 	}
 }
