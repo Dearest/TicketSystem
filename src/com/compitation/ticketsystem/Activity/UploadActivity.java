@@ -41,9 +41,32 @@ public class UploadActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				Judge();
+			}
+		});
+		
+		btn_positing.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
 				
 			}
 		});
+		
+		btn_platenumber.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+
+	protected void Judge() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
