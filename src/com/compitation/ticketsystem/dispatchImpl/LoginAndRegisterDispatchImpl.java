@@ -9,6 +9,8 @@ import android.os.Handler;
 import com.compitation.ticketsystem.Idispatch.ILoginAndRegisterDispatch;
 import com.compitation.ticketsystem.thread.LoginThread;
 import com.comtipation.ticketsystem.model.User;
+
+
 public class LoginAndRegisterDispatchImpl implements ILoginAndRegisterDispatch{
 
 	@Override
@@ -26,8 +28,4 @@ public class LoginAndRegisterDispatchImpl implements ILoginAndRegisterDispatch{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	
-	
-	
 }

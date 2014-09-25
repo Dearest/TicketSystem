@@ -26,7 +26,6 @@ import com.compitation.ticketsystem.Idispatch.ILoginAndRegisterDispatch;
 import com.compitation.ticketsystem.dispatchImpl.LoginAndRegisterDispatchImpl;
 import com.compitation.ticketsystem.utils.MD5Helper;
 import com.compitation.ticketsystem.utils.SystemContent;
-import com.comtipation.ticketsystem.model.User;
 
 public class LoginActivity extends Activity {
 	private EditText username;
