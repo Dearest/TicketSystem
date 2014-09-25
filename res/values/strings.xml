@@ -33,5 +33,6 @@
     <string name="gps">定位</string>
     <string name="car_num">车牌号</string>
     <string name="upload">上  传</string>
+    <string name="title_activity_forget_passwor">ForgetPasswor</string>
 
 </resources>

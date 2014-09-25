@@ -83,7 +83,6 @@ public class Register extends Activity{
 		questionlist.add("您的学号（或工号）是？");
 		questionlist.add("您父亲的姓名是？");
 		questionlist.add("您母亲的姓名是？");
-		questionlist.add("您的小学校名是？");
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, questionlist);
         //设置下拉菜单样式
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
