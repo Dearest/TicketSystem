@@ -28,5 +28,10 @@
     <string name="title_activity_view_pager">ViewPager</string>
     <string name="title_activity_upload">UploadActivity</string>
     <string name="title_activity_person">PersonActivity</string>
+    <string name="ticket_type">罚单类型</string>
+    <string name="ticket_time">罚单时间</string>
+    <string name="gps">定位</string>
+    <string name="car_num">车牌号</string>
+    <string name="upload">上  传</string>
 
 </resources>
