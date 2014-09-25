@@ -93,7 +93,7 @@ public class LoginActivity extends Activity {
 				} else {
 					if (isNetworkConnected()) {
 						// 在这里执行后续操作
-						// loginDispatch.login(handler,userName, passWord);
+						loginDispatch.login(handler,userName, passWord);
 
 					} else {
 						Toast.makeText(LoginActivity.this, "无网络连接，请检查网络",
