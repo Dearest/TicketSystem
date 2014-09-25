@@ -25,5 +25,8 @@
     <string name="answer">密保问题答案</string>
     <string name="car_account">请输入车牌号</string>
     <string name="title_activity_main_page">MainPage</string>
+    <string name="title_activity_view_pager">ViewPager</string>
+    <string name="title_activity_upload">UploadActivity</string>
+    <string name="title_activity_person">PersonActivity</string>
 
 </resources>
