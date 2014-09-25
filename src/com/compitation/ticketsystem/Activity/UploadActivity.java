@@ -5,6 +5,8 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -33,6 +35,15 @@ public class UploadActivity extends Activity {
 		
 		time.setText(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
 		timearr = time.getText().toString().split(" ");
+		
+		btn_upload.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 
 	
