@@ -1,6 +1,7 @@
 package com.comtipation.ticketsystem.model;
 
 public class User {
+	private String userId;
 	private String userName;
 	
 	private String passWord;
@@ -11,7 +12,7 @@ public class User {
 	/**
 	 * 性别  0 男 1女
 	 */
-	private int sex;
+	private String sex;
 	/**
 	 * 手机号
 	 */
@@ -44,10 +45,10 @@ public class User {
 	public void setCarNumber(String carNumber) {
 		this.carNumber = carNumber;
 	}
-	public int getSex() {
+	public String getSex() {
 		return sex;
 	}
-	public void setSex(int sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 	public int getPhoneNumber() {
@@ -67,5 +68,11 @@ public class User {
 	}
 	public void setSecurityQuestionAnwser(String securityQuestionAnwser) {
 		this.securityQuestionAnwser = securityQuestionAnwser;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 }
