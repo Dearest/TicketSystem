@@ -37,7 +37,7 @@ public class SystemContent {
 	// 电话 phone
 	// 车牌号 carNum
 	// 分数 points
-	//当天的罚单数量 finesNum   类型是 int   
-	// 当天上传的罚单数量  upNum  int
-	
+	// 当天的罚单数量 finesNum 类型是 int
+	// 当天上传的罚单数量 upNum int
+
 }

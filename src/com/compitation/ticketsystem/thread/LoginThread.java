@@ -54,7 +54,7 @@ public class LoginThread implements Runnable {
 					editor.putString("sex", responseJSON.getString("sex"));
 					editor.commit();
 					msg.what = 1;// 登录成功
-				
+
 					handler.sendMessage(msg);
 				} else {
 					Log.i("Flag", "登录失败 用户名或密码错误");

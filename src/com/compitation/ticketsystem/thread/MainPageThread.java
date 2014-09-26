@@ -34,12 +34,12 @@ public class MainPageThread implements Runnable {
 		try {
 			URL userInfoUrl = new URL(SystemContent.SHOW_USER_INFO + "?userId="
 					+ userId);
-			URL nowTicketNum = new URL(SystemContent.GET_BY_DATE_NUM + "?userId="
-					+ userId);
+			URL nowTicketNum = new URL(SystemContent.GET_BY_DATE_NUM
+					+ "?userId=" + userId);
 			URL nowUploadTicketNum = new URL(SystemContent.GET_UP_FINES
 					+ "?userid=" + userId);
-			HttpRequest userInfoRequest = HttpRequest.get(userInfoUrl).connectTimeout(
-					3000);
+			HttpRequest userInfoRequest = HttpRequest.get(userInfoUrl)
+					.connectTimeout(3000);
 			if (userInfoRequest.ok()) {
 				Log.i("Falg", "请求用户信息成功");
 				JSONObject userJSON = new JSONObject(userInfoRequest.body());
@@ -54,31 +54,33 @@ public class MainPageThread implements Runnable {
 				editor.putString("points", userInfo.getString("points"));
 				editor.commit();
 			} else {
-				msg.what = 4;//获取用户信息失败
+				msg.what = 4;// 获取用户信息失败
 			}
-			
-			HttpRequest finesNumRequest = HttpRequest.get(nowTicketNum).connectTimeout(3000);
+
+			HttpRequest finesNumRequest = HttpRequest.get(nowTicketNum)
+					.connectTimeout(3000);
 			if (finesNumRequest.ok()) {
 				JSONObject finesJson = new JSONObject(finesNumRequest.body());
 				editor.putInt("finesNum", finesJson.getInt("num"));
 				editor.commit();
-			}else {
-				msg.what = 4;//获取用户信息失败
+			} else {
+				msg.what = 4;// 获取用户信息失败
 			}
-			
-			HttpRequest upNum = HttpRequest.get(nowUploadTicketNum).connectTimeout(3000);
+
+			HttpRequest upNum = HttpRequest.get(nowUploadTicketNum)
+					.connectTimeout(3000);
 			if (upNum.ok()) {
 				JSONObject upJSON = new JSONObject(upNum.body());
 				editor.putInt("upNum", upJSON.getInt("num"));
 				editor.commit();
 			}
-			
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
+
 	public MainPageThread() {
 	}
 

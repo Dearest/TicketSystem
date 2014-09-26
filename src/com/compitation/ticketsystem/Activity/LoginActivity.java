@@ -46,7 +46,7 @@ public class LoginActivity extends Activity {
 	private LoginHandler handler;
 	private SharedPreferences mySharedPreferences;
 	private SharedPreferences.Editor editor;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -137,7 +137,9 @@ public class LoginActivity extends Activity {
 
 	// 内部类 Handler
 	class LoginHandler extends Handler {
-		private ExecutorService singleThread = Executors.newSingleThreadExecutor();
+		private ExecutorService singleThread = Executors
+				.newSingleThreadExecutor();
+
 		public LoginHandler(Looper looper) {
 			super(looper);
 		}
