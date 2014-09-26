@@ -12,6 +12,9 @@ import com.comtipation.ticketsystem.model.User;
  * 
  */
 public interface ILoginAndRegisterDispatch {
-	public void login( SharedPreferences sharedPreferences, Handler handler, String userName, String passWord);
-	public boolean register(SharedPreferences sharedPreferences, Handler handler,User user);
+	public void login(SharedPreferences sharedPreferences, Handler handler,
+			String userName, String passWord);
+
+	public boolean register(SharedPreferences sharedPreferences,
+			Handler handler, User user);
 }

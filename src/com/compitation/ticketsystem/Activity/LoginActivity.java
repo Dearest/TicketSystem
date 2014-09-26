@@ -1,5 +1,8 @@
 package com.compitation.ticketsystem.Activity;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +27,7 @@ import android.widget.Toast;
 import com.compitation.ticketsystem.R;
 import com.compitation.ticketsystem.Idispatch.ILoginAndRegisterDispatch;
 import com.compitation.ticketsystem.dispatchImpl.LoginAndRegisterDispatchImpl;
+import com.compitation.ticketsystem.thread.MainPageThread;
 import com.compitation.ticketsystem.utils.MD5Helper;
 import com.compitation.ticketsystem.utils.SystemContent;
 
@@ -38,11 +42,11 @@ public class LoginActivity extends Activity {
 	private LinearLayout rl;
 	private Animation my_Translate; // 位移动画
 	private ILoginAndRegisterDispatch loginDispatch;
-	
+
 	private LoginHandler handler;
 	private SharedPreferences mySharedPreferences;
 	private SharedPreferences.Editor editor;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,7 +57,7 @@ public class LoginActivity extends Activity {
 		mySharedPreferences = getSharedPreferences(
 				SystemContent.PREFERNCE_NAME, Activity.MODE_PRIVATE);
 		editor = mySharedPreferences.edit();
-		
+
 		// 实例化调度层实现类
 		loginDispatch = new LoginAndRegisterDispatchImpl();
 		// 系统title操作，添加字体库
@@ -93,7 +97,8 @@ public class LoginActivity extends Activity {
 				} else {
 					if (isNetworkConnected()) {
 						// 在这里执行后续操作
-						loginDispatch.login(mySharedPreferences,handler,userName, passWord);
+						loginDispatch.login(mySharedPreferences, handler,
+								userName, passWord);
 					} else {
 						Toast.makeText(LoginActivity.this, "无网络连接，请检查网络",
 								Toast.LENGTH_LONG).show();
@@ -132,6 +137,7 @@ public class LoginActivity extends Activity {
 
 	// 内部类 Handler
 	class LoginHandler extends Handler {
+		private ExecutorService singleThread = Executors.newSingleThreadExecutor();
 		public LoginHandler(Looper looper) {
 			super(looper);
 		}
@@ -141,13 +147,15 @@ public class LoginActivity extends Activity {
 			// 在这里处理消息
 			switch (msg.what) {
 			case 1:
-				
-				 Intent intent = new
-				 Intent(LoginActivity.this,ViewPagerActivity.class);
-				 startActivity(intent);
-				Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG)
-						.show();
+				MainPageThread mainPageThread = new MainPageThread(
+						mySharedPreferences, handler,
+						mySharedPreferences.getString("userId", ""));
+				singleThread.execute(mainPageThread);
 				Log.i("Flag", "LoginActivity 登录成功");
+				Intent intent = new Intent(LoginActivity.this,
+						ViewPagerActivity.class);
+				startActivity(intent);
+
 				break;
 			case 2:
 				// 登录失败 用户名或密码错误
@@ -157,6 +165,10 @@ public class LoginActivity extends Activity {
 			case 3:
 				// 登录失败 服务器出错
 				Toast.makeText(LoginActivity.this, "服务器出错，请稍候再试",
+						Toast.LENGTH_LONG).show();
+				break;
+			case 4:
+				Toast.makeText(LoginActivity.this, "获取用户信息失败，请稍候再试",
 						Toast.LENGTH_LONG).show();
 				break;
 			default:

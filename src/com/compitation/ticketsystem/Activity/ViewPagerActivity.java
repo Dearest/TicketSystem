@@ -1,6 +1,5 @@
 package com.compitation.ticketsystem.Activity;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class ViewPagerActivity extends ActivityGroup {
 	ViewPager pager = null;
 	TabHost tabHost = null;
 	private TextView tvupload, tvperson, tvhome;
-	
+
 	private int offset = 0;// 动画图片偏移量
 	private int currIndex = 0;// 当前页卡编号
 	private int bmpW;// 动画图片宽度
@@ -45,7 +44,7 @@ public class ViewPagerActivity extends ActivityGroup {
 		setContentView(R.layout.view_pager);
 
 		context = ViewPagerActivity.this;
-//		manager = getLocalActivityManager();
+		// manager = getLocalActivityManager();
 		manager = getLocalActivityManager();
 		manager.dispatchCreate(savedInstanceState);
 
@@ -54,6 +53,7 @@ public class ViewPagerActivity extends ActivityGroup {
 		initPagerViewer();
 
 	}
+
 	/**
 	 * 初始化标题
 	 */
@@ -61,18 +61,18 @@ public class ViewPagerActivity extends ActivityGroup {
 		tvperson = (TextView) findViewById(R.id.txperson);
 		tvupload = (TextView) findViewById(R.id.txupload);
 		tvhome = (TextView) findViewById(R.id.txhomepage);
-		
+
 		tvupload.setOnClickListener(new MyOnClickListener(0));
 		tvhome.setOnClickListener(new MyOnClickListener(1));
 		tvperson.setOnClickListener(new MyOnClickListener(2));
-			
-		
+
 	}
+
 	/**
 	 * 初始化PageViewer
 	 */
 	private void initPagerViewer() {
-		pager = (ViewPager)findViewById(R.id.viewpage);
+		pager = (ViewPager) findViewById(R.id.viewpage);
 		final ArrayList<View> list = new ArrayList<View>();
 		Intent intent = new Intent(context, UploadActivity.class);
 		list.add(getView("A", intent));
@@ -85,13 +85,14 @@ public class ViewPagerActivity extends ActivityGroup {
 		pager.setCurrentItem(0);
 		pager.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
+
 	/**
 	 * 初始化动画
 	 */
 	private void InitImageView() {
 		cursor = (ImageView) findViewById(R.id.cursor);
 		bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.roller)
-		.getWidth();// 获取图片宽度
+				.getWidth();// 获取图片宽度
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		int screenW = dm.widthPixels;// 获取分辨率宽度
@@ -100,8 +101,10 @@ public class ViewPagerActivity extends ActivityGroup {
 		matrix.postTranslate(offset, 0);
 		cursor.setImageMatrix(matrix);// 设置动画初始位置
 	}
+
 	/**
 	 * 通过activity获取视图
+	 * 
 	 * @param id
 	 * @param intent
 	 * @return
@@ -113,15 +116,15 @@ public class ViewPagerActivity extends ActivityGroup {
 	/**
 	 * Pager适配器
 	 */
-	public class MyPagerAdapter extends PagerAdapter{
-		List<View> list =  new ArrayList<View>();
+	public class MyPagerAdapter extends PagerAdapter {
+		List<View> list = new ArrayList<View>();
+
 		public MyPagerAdapter(ArrayList<View> list) {
 			this.list = list;
 		}
 
 		@Override
-		public void destroyItem(ViewGroup container, int position,
-				Object object) {
+		public void destroyItem(ViewGroup container, int position, Object object) {
 			ViewPager pViewPager = ((ViewPager) container);
 			pViewPager.removeView(list.get(position));
 		}
@@ -135,6 +138,7 @@ public class ViewPagerActivity extends ActivityGroup {
 		public int getCount() {
 			return list.size();
 		}
+
 		@Override
 		public Object instantiateItem(View arg0, int arg1) {
 			ViewPager pViewPager = ((ViewPager) arg0);
@@ -156,6 +160,7 @@ public class ViewPagerActivity extends ActivityGroup {
 		public void startUpdate(View arg0) {
 		}
 	}
+
 	/**
 	 * 页卡切换监听
 	 */
@@ -179,7 +184,7 @@ public class ViewPagerActivity extends ActivityGroup {
 				if (currIndex == 0) {
 					animation = new TranslateAnimation(offset, one, 0, 0);
 				} else if (currIndex == 2) {
-					animation = new TranslateAnimation(two, one, 0, 0);	
+					animation = new TranslateAnimation(two, one, 0, 0);
 				}
 				break;
 			case 2:
@@ -198,14 +203,15 @@ public class ViewPagerActivity extends ActivityGroup {
 
 		@Override
 		public void onPageScrollStateChanged(int arg0) {
-			
+
 		}
 
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
-			
+
 		}
 	}
+
 	/**
 	 * 头标点击监听
 	 */

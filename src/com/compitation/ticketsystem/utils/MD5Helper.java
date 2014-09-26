@@ -3,10 +3,10 @@ package com.compitation.ticketsystem.utils;
 import java.security.MessageDigest;
 
 public class MD5Helper {
-	
+
 	public static String getMD5(String string) {
 		MessageDigest md5 = null;
-		
+
 		try {
 			md5 = MessageDigest.getInstance("MD5");
 		} catch (Exception e) {
@@ -27,8 +27,8 @@ public class MD5Helper {
 			}
 			hexValue.append(Integer.toHexString(val));
 		}
-		
+
 		return hexValue.toString();
 	}
-	
+
 }
