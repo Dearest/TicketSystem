@@ -67,23 +67,23 @@ public class ForgetPassword extends Activity {
 		} else if (ques4.isChecked()) {
 
 		} else if (ques5.isChecked()) {
-		
-		//判断重要项是否为空
-				if(!(TextUtils.isEmpty(s_user_name))
-						&& !(TextUtils.isEmpty(s_answer))){
-					
-						//判断是否有网
-						if (isNetworkConnected()) {
-							 
-						} else {
-							Toast.makeText(ForgetPassword.this, NONETCONNECTED, Toast.LENGTH_LONG)
-									.show();
-						}
-					
-					
-				}else {
-					Toast.makeText(ForgetPassword.this, WARNTEXT, Toast.LENGTH_LONG).show();
+
+			// 判断重要项是否为空
+			if (!(TextUtils.isEmpty(s_user_name))
+					&& !(TextUtils.isEmpty(s_answer))) {
+
+				// 判断是否有网
+				if (isNetworkConnected()) {
+
+				} else {
+					Toast.makeText(ForgetPassword.this, NONETCONNECTED,
+							Toast.LENGTH_LONG).show();
 				}
+
+			} else {
+				Toast.makeText(ForgetPassword.this, WARNTEXT, Toast.LENGTH_LONG)
+						.show();
+			}
 		}
 
 	}

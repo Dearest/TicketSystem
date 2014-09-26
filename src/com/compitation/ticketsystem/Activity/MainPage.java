@@ -52,7 +52,6 @@ public class MainPage extends ActivityGroup {
  		};
  	};
 
-   
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

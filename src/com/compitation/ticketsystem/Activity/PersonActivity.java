@@ -12,5 +12,4 @@ public class PersonActivity extends Activity {
 		setContentView(R.layout.activity_person);
 	}
 
-
 }
