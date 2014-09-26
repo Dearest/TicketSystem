@@ -126,6 +126,24 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        <activity
+            android:name="com.compitation.ticketsystem.Activity.View1"
+            android:label="@string/title_activity_view1" >
+        </activity>
+        <activity
+            android:name="com.compitation.ticketsystem.Activity.View2"
+            android:label="@string/title_activity_view2" >
+        </activity>
+        <activity
+            android:name="com.compitation.ticketsystem.Activity.View3"
+            android:label="@string/title_activity_view3" >
+        </activity>
+        <activity
+            android:name="com.compitation.ticketsystem.TicketDetail"
+            android:label="@string/title_activity_ticket_detail" 
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar">
+        </activity>
     </application>
 
 </manifest>

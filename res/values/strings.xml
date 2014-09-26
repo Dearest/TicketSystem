@@ -34,5 +34,9 @@
     <string name="car_num">车牌号</string>
     <string name="upload">上  传</string>
     <string name="title_activity_forget_passwor">ForgetPasswor</string>
+    <string name="title_activity_view1">View1</string>
+    <string name="title_activity_view2">View2</string>
+    <string name="title_activity_view3">View3</string>
+    <string name="title_activity_ticket_detail">TicketDetail</string>
 
 </resources>
