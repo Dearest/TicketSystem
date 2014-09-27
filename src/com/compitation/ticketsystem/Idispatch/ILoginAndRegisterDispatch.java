@@ -15,6 +15,5 @@ public interface ILoginAndRegisterDispatch {
 	public void login(SharedPreferences sharedPreferences, Handler handler,
 			String userName, String passWord);
 
-	public boolean register(SharedPreferences sharedPreferences,
-			Handler handler, User user);
+	public void register(Handler handler, User user);
 }

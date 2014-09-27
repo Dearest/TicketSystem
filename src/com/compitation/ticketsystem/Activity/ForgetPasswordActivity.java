@@ -1,11 +1,12 @@
 package com.compitation.ticketsystem.Activity;
 
-import com.compitation.ticketsystem.R;
-
+import android.app.Activity;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,9 +14,13 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-import android.app.Activity;
 
-public class ForgetPassword extends Activity {
+import com.compitation.ticketsystem.R;
+import com.compitation.ticketsystem.Idispatch.IForgetPassWordDispatch;
+import com.compitation.ticketsystem.dispatchImpl.ForgetPassWordDispatchImpl;
+import com.comtipation.ticketsystem.model.User;
+
+public class ForgetPasswordActivity extends Activity {
 	private EditText user_name, answer;
 	private RadioGroup question;
 	private RadioButton ques1, ques2, ques3, ques4, ques5;
@@ -24,15 +29,18 @@ public class ForgetPassword extends Activity {
 	private String s_user_name;
 	private String s_question; // 获得问题号
 	private String s_answer;
-
-	private String WARNTEXT = "有选项要填写";
-	private String NONETCONNECTED = "无网络连接，请检查网络";
-
+	private static String WARNTEXT = "有选项要填写";
+	private static String NONETCONNECTED = "无网络连接，请检查网络";
+	private IForgetPassWordDispatch forgetPassword;
+	private Handler handler;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.forget_password);
-
+		forgetPassword = new ForgetPassWordDispatchImpl();
+		Looper looper = Looper.myLooper();
+		handler = new ForgetPasswordHandler(looper);
+		
 		user_name = (EditText) findViewById(R.id.find_account);
 		answer = (EditText) findViewById(R.id.find_answer);
 		question = (RadioGroup) findViewById(R.id.find_question_group);
@@ -71,22 +79,50 @@ public class ForgetPassword extends Activity {
 			// 判断重要项是否为空
 			if (!(TextUtils.isEmpty(s_user_name))
 					&& !(TextUtils.isEmpty(s_answer))) {
-
 				// 判断是否有网
 				if (isNetworkConnected()) {
-
+					//缺少密保问题序号
+					User user = new User();
+					user.setUserName(s_user_name);
+					user.setSecurityQuestionAnwser(s_answer);
+					forgetPassword.forget(handler, user);
 				} else {
-					Toast.makeText(ForgetPassword.this, NONETCONNECTED,
+					Toast.makeText(ForgetPasswordActivity.this, NONETCONNECTED,
 							Toast.LENGTH_LONG).show();
 				}
 
 			} else {
-				Toast.makeText(ForgetPassword.this, WARNTEXT, Toast.LENGTH_LONG)
+				Toast.makeText(ForgetPasswordActivity.this, WARNTEXT, Toast.LENGTH_LONG)
 						.show();
 			}
 		}
 
 	}
+	
+	
+	class ForgetPasswordHandler extends Handler{
+		public ForgetPasswordHandler(Looper looper){
+			super(looper);
+		}
+		@Override
+		public void handleMessage(Message msg){
+			switch (msg.what) {
+			case 1:
+				//密保问题答案正确可以修改密码
+				break;
+			case -1:
+				//服务器出错
+				Toast.makeText(ForgetPasswordActivity.this, "服务器出错，请稍候再试", Toast.LENGTH_LONG)
+				.show();
+			case 2:
+				Toast.makeText(ForgetPasswordActivity.this, "密保答案不正确", Toast.LENGTH_LONG)
+				.show();
+			default:
+				break;
+			}
+		}
+	}
+	
 
 	/**
 	 * 判断是否连接到网络

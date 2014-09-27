@@ -28,7 +28,7 @@ import android.content.Context;
 import android.content.Intent;
 
 @SuppressWarnings("deprecation")
-public class MainPage extends ActivityGroup {
+public class MainPageActivity extends ActivityGroup {
 	private Context context = null;
     private LocalActivityManager manager = null;
     private ViewPager pager = null;
@@ -58,7 +58,7 @@ public class MainPage extends ActivityGroup {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 		setContentView(R.layout.main_page);
 		
-		context = MainPage.this;
+		context = MainPageActivity.this;
 		manager = getLocalActivityManager();
 		manager.dispatchCreate(savedInstanceState);
 		
@@ -91,7 +91,7 @@ public class MainPage extends ActivityGroup {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(MainPage.this,TicketDetail.class);
+				Intent intent = new Intent(MainPageActivity.this,TicketDetail.class);
 				startActivity(intent);
 				
 			}

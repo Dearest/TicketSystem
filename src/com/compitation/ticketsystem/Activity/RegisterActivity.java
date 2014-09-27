@@ -3,11 +3,13 @@ package com.compitation.ticketsystem.Activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.compitation.ticketsystem.R;
+import android.R.integer;
 import android.app.Activity;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -20,8 +22,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+import com.compitation.ticketsystem.R;
+import com.compitation.ticketsystem.Idispatch.ILoginAndRegisterDispatch;
+import com.comtipation.ticketsystem.model.User;
 
-public class Register extends Activity {
+public class RegisterActivity extends Activity {
 	private EditText username;
 	private EditText password;
 	private EditText onfirmpassword;
@@ -42,15 +47,19 @@ public class Register extends Activity {
 
 	private List<String> questionlist = new ArrayList<String>();
 	private ArrayAdapter<String> adapter;
-	private String WARNTEXT = "除车牌号以外，其余都必须填写";
-	private String ERRORTEXT = "两次填写的密码不一样";
-	private String NONETCONNECTED = "无网络连接，请检查网络";
-
+	private final String WARNTEXT = "除车牌号以外，其余都必须填写";
+	private final String ERRORTEXT = "两次填写的密码不一样";
+	private final String NONETCONNECTED = "无网络连接，请检查网络";
+	private final String SUCCESS = "注册成功";
+	private final String REPEAT = "用户名重复，请重新注册";
+	private ILoginAndRegisterDispatch register;
+	private Handler handler;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
-
+		Looper looper = Looper.myLooper();
+		handler = new RegisterHandler(looper);
 		username = (EditText) findViewById(R.id.re_account);
 		password = (EditText) findViewById(R.id.re_password);
 		onfirmpassword = (EditText) findViewById(R.id.re_password_ag);
@@ -139,19 +148,25 @@ public class Register extends Activity {
 			if (s_password.equals(s_password_ag)) {
 				// 判断是否有网
 				if (isNetworkConnected()) {
-
+					User user = new User();
+					user.setUserName(s_username);
+					user.setPassWord(s_password);
+					user.setCarNumber(s_carnum);
+					user.setSecurityQuestionNum(security_question.getSelectedItemPosition());
+					user.setSecurityQuestionAnwser(s_answer);
+					register.register(handler, user);
 				} else {
-					Toast.makeText(Register.this, NONETCONNECTED,
+					Toast.makeText(RegisterActivity.this, NONETCONNECTED,
 							Toast.LENGTH_LONG).show();
 				}
 
 			} else {
-				Toast.makeText(Register.this, ERRORTEXT, Toast.LENGTH_LONG)
+				Toast.makeText(RegisterActivity.this, ERRORTEXT, Toast.LENGTH_LONG)
 						.show();
 			}
 
 		} else {
-			Toast.makeText(Register.this, WARNTEXT, Toast.LENGTH_LONG).show();
+			Toast.makeText(RegisterActivity.this, WARNTEXT, Toast.LENGTH_LONG).show();
 		}
 
 	}
@@ -173,6 +188,33 @@ public class Register extends Activity {
 			return false;
 		}
 
+	}
+	
+	/**
+	 * 内部类 处理注册页面的消息
+	 * @author HANCHEN
+	 *
+	 */
+	class RegisterHandler extends Handler {
+		public RegisterHandler(Looper looper) {
+			super(looper);
+		}
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 1:
+				Toast.makeText(RegisterActivity.this, SUCCESS, Toast.LENGTH_LONG).show();
+				break;
+			case -1:
+				Toast.makeText(RegisterActivity.this, REPEAT, Toast.LENGTH_LONG).show();
+				break;
+			case 2:
+				Toast.makeText(RegisterActivity.this, "服务器出错，请稍候再试", Toast.LENGTH_LONG).show();
+				break;
+			default:
+				break;
+			}
+		}
 	}
 
 }

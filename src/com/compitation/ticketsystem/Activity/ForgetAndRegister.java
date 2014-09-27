@@ -33,12 +33,12 @@ public class ForgetAndRegister extends Activity implements OnClickListener {
 			btn_forget.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.shape_bg_change));
 			startActivity(new Intent(ForgetAndRegister.this,
-					ForgetPassword.class));
+					ForgetPasswordActivity.class));
 			break;
 		case R.id.btn_register:
 			btn_register.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.shape_bg_change));
-			startActivity(new Intent(ForgetAndRegister.this, Register.class));
+			startActivity(new Intent(ForgetAndRegister.this, RegisterActivity.class));
 			break;
 		case R.id.btn_cancel:
 

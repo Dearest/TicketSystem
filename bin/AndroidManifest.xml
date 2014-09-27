@@ -91,13 +91,13 @@
             android:theme="@style/MyDialogStyleBottom" >
         </activity>
         <activity
-            android:name="com.compitation.ticketsystem.Activity.Register"
+            android:name="com.compitation.ticketsystem.Activity.RegisterActivity"
             android:label="@string/title_activity_regiser"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.compitation.ticketsystem.Activity.MainPage"
+            android:name="com.compitation.ticketsystem.Activity.MainPageActivity"
             android:label="@string/title_activity_main_page"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
@@ -121,7 +121,7 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.compitation.ticketsystem.Activity.ForgetPassword"
+            android:name="com.compitation.ticketsystem.Activity.ForgetPasswordActivity"
             android:label="@string/title_activity_forget_passwor"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >

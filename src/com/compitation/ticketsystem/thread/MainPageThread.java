@@ -36,7 +36,7 @@ public class MainPageThread implements Runnable {
 					+ userId);
 			URL nowTicketNum = new URL(SystemContent.GET_BY_DATE_NUM
 					+ "?userId=" + userId);
-			URL nowUploadTicketNum = new URL(SystemContent.GET_UP_FINES
+			URL nowUploadTicketNum = new URL(SystemContent.GET_UP_FINES_NUM
 					+ "?userid=" + userId);
 			HttpRequest userInfoRequest = HttpRequest.get(userInfoUrl)
 					.connectTimeout(3000);
@@ -70,6 +70,7 @@ public class MainPageThread implements Runnable {
 			HttpRequest upNum = HttpRequest.get(nowUploadTicketNum)
 					.connectTimeout(3000);
 			if (upNum.ok()) {
+				
 				JSONObject upJSON = new JSONObject(upNum.body());
 				editor.putInt("upNum", upJSON.getInt("num"));
 				editor.commit();
