@@ -49,7 +49,7 @@ public class ForgetPassword extends Activity {
 			@Override
 			public void onClick(View view) {
 				// TODO Auto-generated method stub
-				
+
 				FindPassword();
 			}
 		});
@@ -69,7 +69,7 @@ public class ForgetPassword extends Activity {
 		} else if (ques4.isChecked()) {
 
 		} else if (ques5.isChecked()) {
-			
+
 		}
 
 		// 判断重要项是否为空

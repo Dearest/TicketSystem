@@ -70,7 +70,7 @@ public class MainPageThread implements Runnable {
 			HttpRequest upNum = HttpRequest.get(nowUploadTicketNum)
 					.connectTimeout(3000);
 			if (upNum.ok()) {
-				
+
 				JSONObject upJSON = new JSONObject(upNum.body());
 				editor.putInt("upNum", upJSON.getInt("num"));
 				editor.commit();

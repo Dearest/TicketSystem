@@ -25,18 +25,19 @@ public class RegisterThread implements Runnable {
 					+ user.getSex() + "&phone=" + user.getPhoneNumber()
 					+ "&question=" + user.getSecurityQuestionNum() + "&answer="
 					+ user.getSecurityQuestionAnwser());
-			HttpRequest registerRequest = HttpRequest.get(registerUrl).connectTimeout(3000);
+			HttpRequest registerRequest = HttpRequest.get(registerUrl)
+					.connectTimeout(3000);
 			if (registerRequest.ok()) {
 				JSONObject registerJson = new JSONObject(registerRequest.body());
 				if (registerJson.getString("status").equals("-1")) {
-					//用户已经注册
+					// 用户已经注册
 					msg.what = -1;
-				}else if (registerJson.getString("status").equals("1")) {
-					//注册成功
+				} else if (registerJson.getString("status").equals("1")) {
+					// 注册成功
 					msg.what = 1;
 				}
-			}else {
-				//网络问题 注册失败
+			} else {
+				// 网络问题 注册失败
 				msg.what = 2;
 			}
 
@@ -46,7 +47,7 @@ public class RegisterThread implements Runnable {
 		}
 	}
 
-	public RegisterThread(Handler handler,User user) {
+	public RegisterThread(Handler handler, User user) {
 		this.user = user;
 	}
 

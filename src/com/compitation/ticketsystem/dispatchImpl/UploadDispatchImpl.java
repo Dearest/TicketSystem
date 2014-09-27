@@ -39,7 +39,7 @@ public class UploadDispatchImpl implements IUploadDispatch {
 	@Override
 	public LocationClient initClient(Context context) {
 		// TODO Auto-generated method stub
-		
+
 		locationClient = new LocationClient(context);
 		LocationClientOption option = new LocationClientOption();
 		option.setOpenGps(true); // 是否打开GPS
@@ -51,7 +51,5 @@ public class UploadDispatchImpl implements IUploadDispatch {
 		locationClient.setLocOption(option);
 		return locationClient;
 	}
-	
-	
 
 }

@@ -22,7 +22,7 @@ public class LoginAndRegisterDispatchImpl implements ILoginAndRegisterDispatch {
 	}
 
 	@Override
-	public void  register(Handler handler, User user) {
+	public void register(Handler handler, User user) {
 		// TODO Auto-generated method stub
 		RegisterThread registerThread = new RegisterThread(handler, user);
 		ExecutorService executorService = Executors.newSingleThreadExecutor();

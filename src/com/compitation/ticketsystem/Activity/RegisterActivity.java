@@ -54,6 +54,7 @@ public class RegisterActivity extends Activity {
 	private final String REPEAT = "用户名重复，请重新注册";
 	private ILoginAndRegisterDispatch register;
 	private Handler handler;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -152,7 +153,8 @@ public class RegisterActivity extends Activity {
 					user.setUserName(s_username);
 					user.setPassWord(s_password);
 					user.setCarNumber(s_carnum);
-					user.setSecurityQuestionNum(security_question.getSelectedItemPosition());
+					user.setSecurityQuestionNum(security_question
+							.getSelectedItemPosition());
 					user.setSecurityQuestionAnwser(s_answer);
 					register.register(handler, user);
 				} else {
@@ -161,12 +163,13 @@ public class RegisterActivity extends Activity {
 				}
 
 			} else {
-				Toast.makeText(RegisterActivity.this, ERRORTEXT, Toast.LENGTH_LONG)
-						.show();
+				Toast.makeText(RegisterActivity.this, ERRORTEXT,
+						Toast.LENGTH_LONG).show();
 			}
 
 		} else {
-			Toast.makeText(RegisterActivity.this, WARNTEXT, Toast.LENGTH_LONG).show();
+			Toast.makeText(RegisterActivity.this, WARNTEXT, Toast.LENGTH_LONG)
+					.show();
 		}
 
 	}
@@ -189,27 +192,32 @@ public class RegisterActivity extends Activity {
 		}
 
 	}
-	
+
 	/**
 	 * 内部类 处理注册页面的消息
+	 * 
 	 * @author HANCHEN
-	 *
+	 * 
 	 */
 	class RegisterHandler extends Handler {
 		public RegisterHandler(Looper looper) {
 			super(looper);
 		}
+
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 1:
-				Toast.makeText(RegisterActivity.this, SUCCESS, Toast.LENGTH_LONG).show();
+				Toast.makeText(RegisterActivity.this, SUCCESS,
+						Toast.LENGTH_LONG).show();
 				break;
 			case -1:
-				Toast.makeText(RegisterActivity.this, REPEAT, Toast.LENGTH_LONG).show();
+				Toast.makeText(RegisterActivity.this, REPEAT, Toast.LENGTH_LONG)
+						.show();
 				break;
 			case 2:
-				Toast.makeText(RegisterActivity.this, "服务器出错，请稍候再试", Toast.LENGTH_LONG).show();
+				Toast.makeText(RegisterActivity.this, "服务器出错，请稍候再试",
+						Toast.LENGTH_LONG).show();
 				break;
 			default:
 				break;

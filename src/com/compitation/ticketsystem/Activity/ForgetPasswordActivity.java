@@ -33,6 +33,7 @@ public class ForgetPasswordActivity extends Activity {
 	private static String NONETCONNECTED = "无网络连接，请检查网络";
 	private IForgetPassWordDispatch forgetPassword;
 	private Handler handler;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,7 +41,7 @@ public class ForgetPasswordActivity extends Activity {
 		forgetPassword = new ForgetPassWordDispatchImpl();
 		Looper looper = Looper.myLooper();
 		handler = new ForgetPasswordHandler(looper);
-		
+
 		user_name = (EditText) findViewById(R.id.find_account);
 		answer = (EditText) findViewById(R.id.find_answer);
 		question = (RadioGroup) findViewById(R.id.find_question_group);
@@ -81,7 +82,7 @@ public class ForgetPasswordActivity extends Activity {
 					&& !(TextUtils.isEmpty(s_answer))) {
 				// 判断是否有网
 				if (isNetworkConnected()) {
-					//缺少密保问题序号
+					// 缺少密保问题序号
 					User user = new User();
 					user.setUserName(s_user_name);
 					user.setSecurityQuestionAnwser(s_answer);
@@ -92,37 +93,36 @@ public class ForgetPasswordActivity extends Activity {
 				}
 
 			} else {
-				Toast.makeText(ForgetPasswordActivity.this, WARNTEXT, Toast.LENGTH_LONG)
-						.show();
+				Toast.makeText(ForgetPasswordActivity.this, WARNTEXT,
+						Toast.LENGTH_LONG).show();
 			}
 		}
 
 	}
-	
-	
-	class ForgetPasswordHandler extends Handler{
-		public ForgetPasswordHandler(Looper looper){
+
+	class ForgetPasswordHandler extends Handler {
+		public ForgetPasswordHandler(Looper looper) {
 			super(looper);
 		}
+
 		@Override
-		public void handleMessage(Message msg){
+		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 1:
-				//密保问题答案正确可以修改密码
+				// 密保问题答案正确可以修改密码
 				break;
 			case -1:
-				//服务器出错
-				Toast.makeText(ForgetPasswordActivity.this, "服务器出错，请稍候再试", Toast.LENGTH_LONG)
-				.show();
+				// 服务器出错
+				Toast.makeText(ForgetPasswordActivity.this, "服务器出错，请稍候再试",
+						Toast.LENGTH_LONG).show();
 			case 2:
-				Toast.makeText(ForgetPasswordActivity.this, "密保答案不正确", Toast.LENGTH_LONG)
-				.show();
+				Toast.makeText(ForgetPasswordActivity.this, "密保答案不正确",
+						Toast.LENGTH_LONG).show();
 			default:
 				break;
 			}
 		}
 	}
-	
 
 	/**
 	 * 判断是否连接到网络

@@ -24,16 +24,17 @@ public class ForgetPassWordThread implements Runnable {
 					+ user.getUserName() + "&question="
 					+ user.getSecurityQuestionNum() + "&anwser="
 					+ user.getSecurityQuestionAnwser());
-			HttpRequest forgetRequest = HttpRequest.get(forgetUrl).connectTimeout(3000);
+			HttpRequest forgetRequest = HttpRequest.get(forgetUrl)
+					.connectTimeout(3000);
 			if (forgetRequest.ok()) {
 				JSONObject forgetJSON = new JSONObject(forgetRequest.body());
-				 if (forgetJSON.getString("status").equals("1")) {
-					msg.what = 1;//密保问题正确
-				}else {
-					msg.what = 2;//密保问题不正确
+				if (forgetJSON.getString("status").equals("1")) {
+					msg.what = 1;// 密保问题正确
+				} else {
+					msg.what = 2;// 密保问题不正确
 				}
-			}else {
-				//服务器出错
+			} else {
+				// 服务器出错
 				msg.what = -1;
 			}
 		} catch (Exception e) {

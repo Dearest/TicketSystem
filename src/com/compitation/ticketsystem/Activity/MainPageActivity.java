@@ -29,76 +29,76 @@ import com.compitation.ticketsystem.R;
 @SuppressWarnings("deprecation")
 public class MainPageActivity extends ActivityGroup {
 	private Context context = null;
-    private LocalActivityManager manager = null;
-    private ViewPager pager = null;
-    private List<View> dots; // 图片标题正文的那些点
-    private ArrayList<View> list;
-    private TextView tv_title;
-    private int currentItem = 0; // 当前图片的索引号
-    private TextView get_num;
-    private TextView post_num;
-    private String s_get_num;
-    private String s_post_num;
-    private ListView thanks;
-    
-    private ScheduledExecutorService scheduledExecutorService;
-    
- // 切换当前显示的图片
- 	private Handler handler = new Handler() {
- 		@SuppressLint("HandlerLeak")
+	private LocalActivityManager manager = null;
+	private ViewPager pager = null;
+	private List<View> dots; // 图片标题正文的那些点
+	private ArrayList<View> list;
+	private TextView tv_title;
+	private int currentItem = 0; // 当前图片的索引号
+	private TextView get_num;
+	private TextView post_num;
+	private String s_get_num;
+	private String s_post_num;
+	private ListView thanks;
+
+	private ScheduledExecutorService scheduledExecutorService;
+
+	// 切换当前显示的图片
+	private Handler handler = new Handler() {
+		@SuppressLint("HandlerLeak")
 		public void handleMessage(android.os.Message msg) {
- 			pager.setCurrentItem(currentItem);// 切换当前显示的图片
- 		};
- 	};
+			pager.setCurrentItem(currentItem);// 切换当前显示的图片
+		};
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 		setContentView(R.layout.main_page);
-		
+
 		context = MainPageActivity.this;
 		manager = getLocalActivityManager();
 		manager.dispatchCreate(savedInstanceState);
-		
-		
-		
+
 		dots = new ArrayList<View>();
 		dots.add(findViewById(R.id.v_dot0));
 		dots.add(findViewById(R.id.v_dot1));
 		dots.add(findViewById(R.id.v_dot2));
-		
+
 		pager = (ViewPager) findViewById(R.id.vp);
 		list = new ArrayList<View>();
-		Intent intent = new Intent(context,View1.class);
-		list.add(getView("A",intent));
-		Intent intent2 = new Intent(context,View2.class);
+		Intent intent = new Intent(context, View1.class);
+		list.add(getView("A", intent));
+		Intent intent2 = new Intent(context, View2.class);
 		list.add(getView("B", intent2));
-		Intent intent3 = new Intent(context,View3.class);
+		Intent intent3 = new Intent(context, View3.class);
 		list.add(getView("C", intent3));
-		
+
 		pager.setAdapter(new MyAdapter());
 		pager.setCurrentItem(0);
 		pager.setOnPageChangeListener(new MyPageChangeListener());
-		
-		get_num = (TextView)findViewById(R.id.get_num);
-		post_num = (TextView)findViewById(R.id.send_num);
-		thanks = (ListView)findViewById(R.id.thanks);
-		
+
+		get_num = (TextView) findViewById(R.id.get_num);
+		post_num = (TextView) findViewById(R.id.send_num);
+		thanks = (ListView) findViewById(R.id.thanks);
+
 		get_num.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(MainPageActivity.this,TicketDetail.class);
+				Intent intent = new Intent(MainPageActivity.this,
+						TicketDetail.class);
 				startActivity(intent);
-				
+
 			}
 		});
 	}
-	
+
 	/**
 	 * 通过activity获取视图
+	 * 
 	 * @param id
 	 * @param intent
 	 * @return
@@ -107,22 +107,20 @@ public class MainPageActivity extends ActivityGroup {
 		return manager.startActivity(id, intent).getDecorView();
 	}
 
-	
 	@Override
 	protected void onStart() {
 		scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
 		// 当Activity显示出来后，每两秒钟切换一次图片显示
-		scheduledExecutorService.scheduleAtFixedRate(new ScrollTask(), 1, 2, TimeUnit.SECONDS);
+		scheduledExecutorService.scheduleAtFixedRate(new ScrollTask(), 1, 2,
+				TimeUnit.SECONDS);
 		super.onStart();
 	}
 
-	/*@Override
-	protected void onStop() {
-		// 当Activity不可见的时候停止切换
-		scheduledExecutorService.shutdown();
-		super.onStop();
-	}*/
-	
+	/*
+	 * @Override protected void onStop() { // 当Activity不可见的时候停止切换
+	 * scheduledExecutorService.shutdown(); super.onStop(); }
+	 */
+
 	/**
 	 * 换行切换任务
 	 * 
@@ -143,9 +141,7 @@ public class MainPageActivity extends ActivityGroup {
 		}
 
 	}
-	
-	
-	
+
 	/**
 	 * 填充ViewPager页面的适配器
 	 * 
@@ -195,6 +191,7 @@ public class MainPageActivity extends ActivityGroup {
 
 		}
 	}
+
 	/**
 	 * 当ViewPager中页面的状态发生改变时调用
 	 * 
@@ -225,5 +222,3 @@ public class MainPageActivity extends ActivityGroup {
 	}
 
 }
-
-

@@ -77,14 +77,15 @@ public class UploadActivity extends Activity {
 	private Bitmap[] bitmaps = null;
 	private String cph = null;
 	private static final int SCALE = 5;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_upload);
 		Looper looper = Looper.myLooper();
-		handler  = new UploadHandler(looper);
+		handler = new UploadHandler(looper);
 		uploadDispatch = new UploadDispatchImpl();
-		
+
 		context = getApplicationContext();
 		type = (Spinner) findViewById(R.id.type);
 		time = (EditText) findViewById(R.id.time);
@@ -93,16 +94,16 @@ public class UploadActivity extends Activity {
 		btn_platenumber = (Button) findViewById(R.id.bt_platenumber);// 车牌号的button
 		btn_upload = (Button) findViewById(R.id.bt_upload);// 上传的button
 		btn_positing = (Button) findViewById(R.id.positing);
-		
+
 		locationClient = new LocationClient(getApplicationContext());
 		LocationClientOption option = new LocationClientOption();
-        option.setOpenGps(true);                                //是否打开GPS
-        option.setCoorType("bd09ll");                           //设置返回值的坐标类型。
-        option.setPriority(LocationClientOption.NetWorkFirst);  //设置定位优先级
-        option.setProdName("LocationDemo");                     //设置产品线名称。强烈建议您使用自定义的产品线名称，方便我们以后为您提供更高效准确的定位服务。
-        option.setScanSpan(UPDATE_TIME);
-        option.setAddrType("all");								//设置定时定位的时间间隔。单位毫秒
-        locationClient.setLocOption(option);
+		option.setOpenGps(true); // 是否打开GPS
+		option.setCoorType("bd09ll"); // 设置返回值的坐标类型。
+		option.setPriority(LocationClientOption.NetWorkFirst); // 设置定位优先级
+		option.setProdName("LocationDemo"); // 设置产品线名称。强烈建议您使用自定义的产品线名称，方便我们以后为您提供更高效准确的定位服务。
+		option.setScanSpan(UPDATE_TIME);
+		option.setAddrType("all"); // 设置定时定位的时间间隔。单位毫秒
+		locationClient.setLocOption(option);
 		locationClient.registerLocationListener(new BDLocationListener() {
 
 			@Override
@@ -124,28 +125,28 @@ public class UploadActivity extends Activity {
 		});
 		time.setText(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
 				.format(new Date()));
-		//这句可能有问题
+		// 这句可能有问题
 		timearr = time.getText().toString().split(" ");
 
 		TicktTypeSpinner();
 
 		btn_positing.setOnClickListener(new OnClickListener() {
-			//定位
+			// 定位
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.i("Falg","点击定位");
+				Log.i("Falg", "点击定位");
 				if (locationClient == null) {
-		            return;
-		        }
-		        if (locationClient.isStarted()) {
-		        	btn_positing.setText("定  位");
-		            locationClient.stop();
-		        }else {
-		        	btn_positing.setText("停  止");
-		            locationClient.start();
-		            locationClient.requestLocation();
-		        }
+					return;
+				}
+				if (locationClient.isStarted()) {
+					btn_positing.setText("定  位");
+					locationClient.stop();
+				} else {
+					btn_positing.setText("停  止");
+					locationClient.start();
+					locationClient.requestLocation();
+				}
 			}
 		});
 
@@ -156,10 +157,12 @@ public class UploadActivity extends Activity {
 				// TODO Auto-generated method stub
 				Uri imageUri = null;
 				String fileName = null;
-				Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				Intent openCameraIntent = new Intent(
+						MediaStore.ACTION_IMAGE_CAPTURE);
 				REQUEST_CODE = TAKE_PICTURE;
 				fileName = "image.jpg";
-				imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),fileName));
+				imageUri = Uri.fromFile(new File(Environment
+						.getExternalStorageDirectory(), fileName));
 				openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
 				startActivityForResult(openCameraIntent, REQUEST_CODE);
 			}
@@ -177,10 +180,10 @@ public class UploadActivity extends Activity {
 				if (!TextUtils.isEmpty(position) || TextUtils.isEmpty(car_num)
 						|| TextUtils.isEmpty(ticket_time)) {
 					if (isNetworkConnected()) {
-						
+
 					} else {
-						Toast.makeText(UploadActivity.this, "无法连接网络，请检查网络连接后再试",
-								Toast.LENGTH_LONG).show();
+						Toast.makeText(UploadActivity.this,
+								"无法连接网络，请检查网络连接后再试", Toast.LENGTH_LONG).show();
 					}
 				}
 			}
@@ -223,7 +226,7 @@ public class UploadActivity extends Activity {
 		if (!TextUtils.isEmpty(position) || TextUtils.isEmpty(car_num)
 				|| TextUtils.isEmpty(ticket_time)) {
 			if (isNetworkConnected()) {
-				
+
 			} else {
 				Toast.makeText(UploadActivity.this, "无法连接网络，请检查网络连接后再试",
 						Toast.LENGTH_LONG).show();
@@ -231,47 +234,52 @@ public class UploadActivity extends Activity {
 		}
 
 	}
-	
-	class UploadHandler extends Handler{
-		public UploadHandler(Looper looper){
+
+	class UploadHandler extends Handler {
+		public UploadHandler(Looper looper) {
 			super(looper);
 		}
+
 		@Override
-		public void handleMessage(Message msg){
+		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 1:
-				
+
 				break;
 
 			default:
 				break;
 			}
-			
+
 		}
 	}
-	
-	
+
 	@Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (locationClient != null && locationClient.isStarted()) {
-            locationClient.stop();
-            locationClient = null;
-        }
+	protected void onDestroy() {
+		super.onDestroy();
+		if (locationClient != null && locationClient.isStarted()) {
+			locationClient.stop();
+			locationClient = null;
+		}
 	}
-	
+
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inPreferredConfig = Config.ARGB_8888;
-		bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory()+"/image.jpg", options);
-		newBitmap = ImageTools.zoomBitmap(bitmap, bitmap.getWidth() / SCALE, bitmap.getHeight() / SCALE);
+		options.inPreferredConfig = Config.ARGB_8888;
+		bitmap = BitmapFactory.decodeFile(
+				Environment.getExternalStorageDirectory() + "/image.jpg",
+				options);
+		newBitmap = ImageTools.zoomBitmap(bitmap, bitmap.getWidth() / SCALE,
+				bitmap.getHeight() / SCALE);
 		bitmap.recycle();
-//		ImageTools.savePhotoToSDCard(
-//				newBitmap, Environment.getExternalStorageDirectory().getAbsolutePath(),
-//				String.valueOf(System.currentTimeMillis()));
-		progressDialog = ProgressDialog.show(UploadActivity.this, "Loading...", "Please wait...");
+		// ImageTools.savePhotoToSDCard(
+		// newBitmap,
+		// Environment.getExternalStorageDirectory().getAbsolutePath(),
+		// String.valueOf(System.currentTimeMillis()));
+		progressDialog = ProgressDialog.show(UploadActivity.this, "Loading...",
+				"Please wait...");
 		new Thread() {
 
 			@Override
@@ -280,16 +288,16 @@ public class UploadActivity extends Activity {
 					// TODO Auto-generated method stub
 					curbitmap = ColorKMeans.Math(newBitmap);
 					curbitmap = Oritenation.Math(curbitmap, newBitmap);
-					
+
 					if (PlateNumberGroup.AlreadyChecked) {
 						bitmaps = SegInEachChar.Math(curbitmap);
-						
+
 						AssetsResource.context = UploadActivity.this;
 						cph = RecEachCharInMinDis.Math(bitmaps);
 						try {
 							cph = new String(cph.getBytes("utf-8"));
 							cph = cph.substring(0, cph.indexOf("["));
-							Log.i("Flag", "Cph :"+cph);
+							Log.i("Flag", "Cph :" + cph);
 						} catch (UnsupportedEncodingException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -303,9 +311,10 @@ public class UploadActivity extends Activity {
 					handler.sendEmptyMessage(33);
 				}
 			}
-			
+
 		}.start();
 	}
+
 	/**
 	 * 判断是否连接到网络
 	 * 

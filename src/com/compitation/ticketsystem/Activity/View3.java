@@ -15,11 +15,11 @@ public class View3 extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view3);
-		
-		text1 = (TextView)findViewById(R.id.text1);
-		text2 = (TextView)findViewById(R.id.text2);
-		text3 = (TextView)findViewById(R.id.text3);
-		
+
+		text1 = (TextView) findViewById(R.id.text1);
+		text2 = (TextView) findViewById(R.id.text2);
+		text3 = (TextView) findViewById(R.id.text3);
+
 		Typeface face = Typeface.createFromAsset(getAssets(),
 				"fonts/huakangwawa.TTF");
 		text1.setTypeface(face);
