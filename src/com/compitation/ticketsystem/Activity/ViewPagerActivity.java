@@ -76,7 +76,7 @@ public class ViewPagerActivity extends ActivityGroup {
 		final ArrayList<View> list = new ArrayList<View>();
 		Intent intent = new Intent(context, UploadActivity.class);
 		list.add(getView("A", intent));
-		Intent intent2 = new Intent(context, MainPageActivity.class);
+		Intent intent2 = new Intent(context, MainPage.class);
 		list.add(getView("B", intent2));
 		Intent intent3 = new Intent(context, PersonActivity.class);
 		list.add(getView("C", intent3));
