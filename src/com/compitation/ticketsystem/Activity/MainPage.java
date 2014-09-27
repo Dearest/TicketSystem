@@ -7,7 +7,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import com.compitation.ticketsystem.R;
-import com.compitation.ticketsystem.TicketDetail;
 
 import android.os.Bundle;
 import android.os.Handler;

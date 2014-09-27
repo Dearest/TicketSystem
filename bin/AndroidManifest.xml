@@ -139,7 +139,7 @@
             android:label="@string/title_activity_view3" >
         </activity>
         <activity
-            android:name="com.compitation.ticketsystem.TicketDetail"
+            android:name="com.compitation.ticketsystem.Activity.TicketDetail"
             android:label="@string/title_activity_ticket_detail" 
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar">
