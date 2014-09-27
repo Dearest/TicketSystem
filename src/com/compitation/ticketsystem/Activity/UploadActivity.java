@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -48,6 +49,8 @@ import com.compitation.ticketsystem.scan.Oritenation;
 import com.compitation.ticketsystem.scan.PlateNumberGroup;
 import com.compitation.ticketsystem.scan.RecEachCharInMinDis;
 import com.compitation.ticketsystem.scan.SegInEachChar;
+import com.compitation.ticketsystem.utils.SystemContent;
+import com.comtipation.ticketsystem.model.Ticket;
 
 @SuppressLint("SimpleDateFormat")
 public class UploadActivity extends Activity {
@@ -58,10 +61,8 @@ public class UploadActivity extends Activity {
 	private ProgressDialog progressDialog;
 	private Button btn_upload, btn_positing, btn_platenumber;
 	private String ticket_type, car_num, position, ticket_time;
-	private String[] timearr = new String[2];
 	private IUploadDispatch uploadDispatch;
 	private Handler handler;
-	private Context context;
 	private String addressString;
 	private LocationClient locationClient = null;
 	private static final int UPDATE_TIME = 5000;
@@ -77,7 +78,11 @@ public class UploadActivity extends Activity {
 	private Bitmap[] bitmaps = null;
 	private String cph = null;
 	private static final int SCALE = 5;
-
+	private Ticket ticket;
+	private SharedPreferences mySharedPreferences;
+	
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -85,8 +90,8 @@ public class UploadActivity extends Activity {
 		Looper looper = Looper.myLooper();
 		handler = new UploadHandler(looper);
 		uploadDispatch = new UploadDispatchImpl();
-
-		context = getApplicationContext();
+		mySharedPreferences = getSharedPreferences(
+				SystemContent.PREFERNCE_NAME, Activity.MODE_PRIVATE);
 		type = (Spinner) findViewById(R.id.type);
 		time = (EditText) findViewById(R.id.time);
 		address = (EditText) findViewById(R.id.address);
@@ -125,8 +130,7 @@ public class UploadActivity extends Activity {
 		});
 		time.setText(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
 				.format(new Date()));
-		// 这句可能有问题
-		timearr = time.getText().toString().split(" ");
+	
 
 		TicktTypeSpinner();
 
@@ -175,12 +179,18 @@ public class UploadActivity extends Activity {
 				// TODO Auto-generated method stub
 				position = address.getText().toString(); // 获得罚单地址
 				car_num = platenumber.getText().toString(); // 获得车牌号
-				ticket_time = time.getText().toString(); // 获得罚单时间
+				ticket_time = time.getText().toString().replace(" ", "+"); // 获得罚单时间
 
 				if (!TextUtils.isEmpty(position) || TextUtils.isEmpty(car_num)
 						|| TextUtils.isEmpty(ticket_time)) {
 					if (isNetworkConnected()) {
-
+						ticket  = new Ticket();
+						ticket.setUserId(mySharedPreferences.getString("userId", ""));
+						ticket.setTime(ticket_time);
+						ticket.setAddress(position);
+						ticket.setCarNum(car_num);
+						ticket.setIrregularity(ticket_type);
+						uploadDispatch.upload(handler, ticket);
 					} else {
 						Toast.makeText(UploadActivity.this,
 								"无法连接网络，请检查网络连接后再试", Toast.LENGTH_LONG).show();
@@ -217,42 +227,6 @@ public class UploadActivity extends Activity {
 		});
 	}
 
-	protected void Judge() {
-		// TODO Auto-generated method stub
-		position = address.getText().toString(); // 获得罚单地址
-		car_num = platenumber.getText().toString(); // 获得车牌号
-		ticket_time = time.getText().toString(); // 获得罚单时间
-
-		if (!TextUtils.isEmpty(position) || TextUtils.isEmpty(car_num)
-				|| TextUtils.isEmpty(ticket_time)) {
-			if (isNetworkConnected()) {
-
-			} else {
-				Toast.makeText(UploadActivity.this, "无法连接网络，请检查网络连接后再试",
-						Toast.LENGTH_LONG).show();
-			}
-		}
-
-	}
-
-	class UploadHandler extends Handler {
-		public UploadHandler(Looper looper) {
-			super(looper);
-		}
-
-		@Override
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			case 1:
-
-				break;
-
-			default:
-				break;
-			}
-
-		}
-	}
 
 	@Override
 	protected void onDestroy() {
@@ -313,6 +287,34 @@ public class UploadActivity extends Activity {
 			}
 
 		}.start();
+	}
+	class UploadHandler extends Handler {
+		public UploadHandler(Looper looper) {
+			super(looper);
+		}
+
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 1:
+				Toast.makeText(UploadActivity.this,"上传成功", Toast.LENGTH_LONG).show();
+				break;
+			case 2:
+				Toast.makeText(UploadActivity.this,"上传失败", Toast.LENGTH_LONG).show();
+				break;
+			case 22:
+				platenumber.setText(cph);
+				Toast.makeText(UploadActivity.this,"解析成功", Toast.LENGTH_LONG).show();
+				break;
+			case 33:
+				Toast.makeText(UploadActivity.this,"你拍摄的照片无法解析，请手动输入", Toast.LENGTH_LONG).show();
+				break;
+			default:
+				Toast.makeText(UploadActivity.this,"服务器出错，请稍候再试", Toast.LENGTH_LONG).show();
+				break;
+			}
+
+		}
 	}
 
 	/**

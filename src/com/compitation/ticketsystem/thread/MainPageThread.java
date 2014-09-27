@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.baidu.location.f;
 import com.compitation.ticketsystem.utils.HttpRequest;
 import com.compitation.ticketsystem.utils.SystemContent;
 
@@ -28,6 +29,7 @@ public class MainPageThread implements Runnable {
 
 	@Override
 	public void run() {
+		
 		Log.i("Falg", "进入获取主界面信息的线程");
 		editor = mySharedPreferences.edit();
 		Message msg = handler.obtainMessage();
@@ -43,7 +45,6 @@ public class MainPageThread implements Runnable {
 			if (userInfoRequest.ok()) {
 				Log.i("Falg", "请求用户信息成功");
 				JSONObject userJSON = new JSONObject(userInfoRequest.body());
-				Log.i("Falg", userJSON.toString());
 				JSONArray userArray = userJSON.getJSONArray("userInfo");
 				JSONObject userInfo = userArray.getJSONObject(0);
 				Log.i("Falg", userInfo.toString());
@@ -61,6 +62,7 @@ public class MainPageThread implements Runnable {
 					.connectTimeout(3000);
 			if (finesNumRequest.ok()) {
 				JSONObject finesJson = new JSONObject(finesNumRequest.body());
+				Log.i("Flag", finesJson.toString());
 				editor.putInt("finesNum", finesJson.getInt("num"));
 				editor.commit();
 			} else {
@@ -70,12 +72,13 @@ public class MainPageThread implements Runnable {
 			HttpRequest upNum = HttpRequest.get(nowUploadTicketNum)
 					.connectTimeout(3000);
 			if (upNum.ok()) {
-
 				JSONObject upJSON = new JSONObject(upNum.body());
 				editor.putInt("upNum", upJSON.getInt("num"));
 				editor.commit();
 			}
-
+			Log.i("Flag","主界面信息获取成功");
+			msg.what = 5;//获取信息成功
+			handler.sendMessage(msg);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

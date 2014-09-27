@@ -157,6 +157,7 @@ public class LoginActivity extends Activity {
 				Intent intent = new Intent(LoginActivity.this,
 						ViewPagerActivity.class);
 				startActivity(intent);
+				
 
 				break;
 			case 2:

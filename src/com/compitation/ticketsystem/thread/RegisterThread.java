@@ -40,7 +40,7 @@ public class RegisterThread implements Runnable {
 				// 网络问题 注册失败
 				msg.what = 2;
 			}
-
+			handler.sendMessage(msg);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

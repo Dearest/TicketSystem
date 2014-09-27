@@ -25,6 +25,6 @@ public interface IUploadDispatch {
 	 */
 	public String getAddress(Handler handler, Context context);
 
-	public LocationClient initClient(Context context);
+	
 
 }

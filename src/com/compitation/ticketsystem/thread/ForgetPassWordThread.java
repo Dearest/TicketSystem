@@ -37,6 +37,7 @@ public class ForgetPassWordThread implements Runnable {
 				// 服务器出错
 				msg.what = -1;
 			}
+			handler.sendMessage(msg);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

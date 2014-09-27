@@ -3,7 +3,6 @@ package com.compitation.ticketsystem.Activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.app.ActivityGroup;
 import android.app.LocalActivityManager;
 import android.content.Context;
@@ -23,6 +22,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+
 import com.compitation.ticketsystem.R;
 
 public class ViewPagerActivity extends ActivityGroup {

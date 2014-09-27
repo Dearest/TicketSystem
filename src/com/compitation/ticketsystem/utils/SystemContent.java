@@ -39,5 +39,6 @@ public class SystemContent {
 	// 分数 points
 	// 当天的罚单数量 finesNum 类型是 int
 	// 当天上传的罚单数量 upNum int
+	//用户是否登录 isLogin boolean
 
 }

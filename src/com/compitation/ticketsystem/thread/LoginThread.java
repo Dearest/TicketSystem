@@ -52,6 +52,7 @@ public class LoginThread implements Runnable {
 					Log.i("Flag", "登录成功");
 					editor.putString("userId", responseJSON.getString("id"));
 					editor.putString("sex", responseJSON.getString("sex"));
+					editor.putBoolean("isLogin", true);
 					editor.commit();
 					msg.what = 1;// 登录成功
 

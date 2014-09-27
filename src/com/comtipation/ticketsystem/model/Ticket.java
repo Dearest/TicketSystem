@@ -16,7 +16,7 @@ public class Ticket {
 	private String address;
 	private String time;
 	private String uploadTime;
-
+	private String carNum;
 	public String getId() {
 		return id;
 	}
@@ -63,5 +63,13 @@ public class Ticket {
 
 	public void setUploadTime(String uploadTime) {
 		this.uploadTime = uploadTime;
+	}
+
+	public String getCarNum() {
+		return carNum;
+	}
+
+	public void setCarNum(String carNum) {
+		this.carNum = carNum;
 	}
 }

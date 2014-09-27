@@ -97,7 +97,7 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.compitation.ticketsystem.Activity.MainPageActivity"
+            android:name="com.compitation.ticketsystem.Activity.MainPage"
             android:label="@string/title_activity_main_page"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
