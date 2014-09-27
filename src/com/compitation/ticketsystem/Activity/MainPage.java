@@ -6,11 +6,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import android.annotation.SuppressLint;
-import android.app.ActivityGroup;
-import android.app.LocalActivityManager;
-import android.content.Context;
-import android.content.Intent;
+import com.compitation.ticketsystem.R;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -23,11 +20,14 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.compitation.ticketsystem.R;
+import android.annotation.SuppressLint;
+import android.app.ActivityGroup;
+import android.app.LocalActivityManager;
+import android.content.Context;
+import android.content.Intent;
 
 @SuppressWarnings("deprecation")
-public class MainPageActivity extends ActivityGroup {
+public class MainPage extends ActivityGroup {
 	private Context context = null;
     private LocalActivityManager manager = null;
     private ViewPager pager = null;
@@ -57,7 +57,7 @@ public class MainPageActivity extends ActivityGroup {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 		setContentView(R.layout.main_page);
 		
-		context = MainPageActivity.this;
+		context = MainPage.this;
 		manager = getLocalActivityManager();
 		manager.dispatchCreate(savedInstanceState);
 		
@@ -90,7 +90,7 @@ public class MainPageActivity extends ActivityGroup {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(MainPageActivity.this,TicketDetail.class);
+				Intent intent = new Intent(MainPage.this,TicketDetail.class);
 				startActivity(intent);
 				
 			}
