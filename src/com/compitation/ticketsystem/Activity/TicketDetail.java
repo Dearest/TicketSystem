@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.app.Activity;
+import android.content.Intent;
 
 public class TicketDetail extends Activity {
 	private ImageButton btn_return;
@@ -36,8 +37,8 @@ public class TicketDetail extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				
+				startActivity(new Intent(TicketDetail.this,ViewPagerActivity.class));
+				finish();
 			}
 		});
 		

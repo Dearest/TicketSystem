@@ -14,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.app.Activity;
+import android.content.Intent;
 
 public class ForgetPassword extends Activity {
 	private EditText user_name, answer;
@@ -48,6 +49,7 @@ public class ForgetPassword extends Activity {
 			@Override
 			public void onClick(View view) {
 				// TODO Auto-generated method stub
+				
 				FindPassword();
 			}
 		});
@@ -67,23 +69,25 @@ public class ForgetPassword extends Activity {
 		} else if (ques4.isChecked()) {
 
 		} else if (ques5.isChecked()) {
+			
+		}
 
-			// 判断重要项是否为空
-			if (!(TextUtils.isEmpty(s_user_name))
-					&& !(TextUtils.isEmpty(s_answer))) {
+		// 判断重要项是否为空
+		if (!(TextUtils.isEmpty(s_user_name)) && !(TextUtils.isEmpty(s_answer))) {
 
-				// 判断是否有网
-				if (isNetworkConnected()) {
-
-				} else {
-					Toast.makeText(ForgetPassword.this, NONETCONNECTED,
-							Toast.LENGTH_LONG).show();
-				}
+			// 判断是否有网
+			if (isNetworkConnected()) {
+				startActivity(new Intent(ForgetPassword.this,
+						ChangePasswordActivity.class));
 
 			} else {
-				Toast.makeText(ForgetPassword.this, WARNTEXT, Toast.LENGTH_LONG)
-						.show();
+				Toast.makeText(ForgetPassword.this, NONETCONNECTED,
+						Toast.LENGTH_LONG).show();
 			}
+
+		} else {
+			Toast.makeText(ForgetPassword.this, WARNTEXT, Toast.LENGTH_LONG)
+					.show();
 		}
 
 	}
