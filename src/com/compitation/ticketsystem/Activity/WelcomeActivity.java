@@ -3,20 +3,17 @@ package com.compitation.ticketsystem.Activity;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.baidu.platform.comapi.map.s;
-import com.compitation.ticketsystem.R;
-import com.compitation.ticketsystem.Activity.LoginActivity.LoginHandler;
-import com.compitation.ticketsystem.thread.MainPageThread;
-import com.compitation.ticketsystem.utils.SystemContent;
-
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.util.Log;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+
+import com.compitation.ticketsystem.R;
+import com.compitation.ticketsystem.thread.MainPageThread;
+import com.compitation.ticketsystem.utils.SystemContent;
 
 public class WelcomeActivity extends Activity {
 
@@ -39,6 +36,7 @@ public class WelcomeActivity extends Activity {
 					Log.i("Flag", "准备跳转到主界面");
 					try {
 						startActivity(new Intent(WelcomeActivity.this, ViewPagerActivity.class));
+						finish();
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
@@ -57,6 +55,7 @@ public class WelcomeActivity extends Activity {
 			executor.execute(mainPageThread);
 		} else {
 			startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+			finish();
 		}
 
 	}

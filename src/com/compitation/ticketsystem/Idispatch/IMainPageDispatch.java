@@ -1,5 +1,7 @@
 package com.compitation.ticketsystem.Idispatch;
 
-public interface IMainPageDispatch {
+import android.os.Handler;
 
+public interface IMainPageDispatch {
+	public void getDetail(Handler handler ,String userId);
 }

@@ -15,6 +15,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -22,8 +23,10 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.compitation.ticketsystem.R;
+import com.compitation.ticketsystem.utils.SysApplication;
 
 public class ViewPagerActivity extends ActivityGroup {
 
@@ -37,6 +40,7 @@ public class ViewPagerActivity extends ActivityGroup {
 	private int currIndex = 0;// 当前页卡编号
 	private int bmpW;// 动画图片宽度
 	private ImageView cursor;// 动画图片
+	private long exitTime = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +78,7 @@ public class ViewPagerActivity extends ActivityGroup {
 	private void initPagerViewer() {
 		pager = (ViewPager) findViewById(R.id.viewpage);
 		final ArrayList<View> list = new ArrayList<View>();
+		
 		Intent intent = new Intent(context, UploadActivity.class);
 		list.add(getView("A", intent));
 		Intent intent2 = new Intent(context, MainPage.class);
@@ -82,7 +87,7 @@ public class ViewPagerActivity extends ActivityGroup {
 		list.add(getView("C", intent3));
 
 		pager.setAdapter(new MyPagerAdapter(list));
-		pager.setCurrentItem(0);
+		pager.setCurrentItem(1);
 		pager.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
 
@@ -227,4 +232,22 @@ public class ViewPagerActivity extends ActivityGroup {
 			pager.setCurrentItem(index);
 		}
 	};
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		
+		if (keyCode == KeyEvent.KEYCODE_BACK
+				&& event.getAction() == KeyEvent.ACTION_DOWN) {
+			if ((System.currentTimeMillis() - exitTime) > 2000) {
+				Toast.makeText(getApplicationContext(), "再按一次返回键退出程序",
+						Toast.LENGTH_SHORT).show();
+				exitTime = System.currentTimeMillis();
+			} else {
+				finish();
+				SysApplication.getInstance().exit();
+				System.exit(0);
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+		
 }

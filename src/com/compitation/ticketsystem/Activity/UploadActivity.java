@@ -110,7 +110,6 @@ public class UploadActivity extends Activity {
 		option.setAddrType("all"); // 设置定时定位的时间间隔。单位毫秒
 		locationClient.setLocOption(option);
 		locationClient.registerLocationListener(new BDLocationListener() {
-
 			@Override
 			public void onReceiveLocation(BDLocation location) {
 				// TODO Auto-generated method stub

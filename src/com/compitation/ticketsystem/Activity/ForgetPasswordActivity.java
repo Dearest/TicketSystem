@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.compitation.ticketsystem.R;
 import com.compitation.ticketsystem.Idispatch.IForgetPassWordDispatch;
 import com.compitation.ticketsystem.dispatchImpl.ForgetPassWordDispatchImpl;
+import com.compitation.ticketsystem.utils.SysApplication;
 import com.comtipation.ticketsystem.model.User;
 
 public class ForgetPasswordActivity extends Activity {
@@ -140,6 +142,24 @@ public class ForgetPasswordActivity extends Activity {
 		} else {
 			return false;
 		}
+	}
+	
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		long exitTime = 0;
+		if (keyCode == KeyEvent.KEYCODE_BACK
+				&& event.getAction() == KeyEvent.ACTION_DOWN) {
+			if ((System.currentTimeMillis() - exitTime) > 2000) {
+				Toast.makeText(getApplicationContext(), "再按一次返回键退出程序",
+						Toast.LENGTH_SHORT).show();
+				exitTime = System.currentTimeMillis();
+			} else {
+				finish();
+				SysApplication.getInstance().exit();
+				System.exit(0);
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }
