@@ -10,7 +10,6 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -119,8 +118,8 @@ public class UploadActivity extends Activity {
 				}
 				StringBuffer stringBuffer = new StringBuffer(256);
 				stringBuffer.append(location.getAddrStr());
-				addressString = stringBuffer.toString();
-				Log.i("Flag", "定位 ：" + addressString);
+				 address.setText(stringBuffer.toString());
+				Log.i("Flag", "定位 ：" + stringBuffer.toString());
 			}
 
 			@Override
@@ -303,9 +302,11 @@ public class UploadActivity extends Activity {
 				break;
 			case 22:
 				platenumber.setText(cph);
+				progressDialog.dismiss();
 				Toast.makeText(UploadActivity.this,"解析成功", Toast.LENGTH_LONG).show();
 				break;
 			case 33:
+				progressDialog.dismiss();
 				Toast.makeText(UploadActivity.this,"你拍摄的照片无法解析，请手动输入", Toast.LENGTH_LONG).show();
 				break;
 			default:
